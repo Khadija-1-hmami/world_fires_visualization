@@ -67,8 +67,14 @@ df_clean = clean_data(df, required)
 lons, lats, brightness = extract_columns(df_clean)
 
 # Step 4: Basic analysis (sanity check)
-print("Max brightness:", max(brightness))
-print("Average brightness:", sum(brightness)/len(brightness))
+max_brightness = max(brightness)
+min_brightness = min(brightness)
+avg_brightness = sum(brightness) / len(brightness)
+
+print("Max brightness:", max_brightness)
+print("Min brightness:", min_brightness)
+print("Average brightness:", avg_brightness)
+print("Total valid fire records:", len(brightness))
 
 # Step 5: Create visualization data
 data = create_map(lons, lats, brightness)
@@ -84,3 +90,4 @@ layout = Layout(
 # Step 7: Combine and export to HTML
 fig = {'data': data, 'layout': layout}
 offline.plot(fig, filename='world_fire.html')
+
